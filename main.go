@@ -33,6 +33,8 @@ func main() {
 	var sum int64
 	results := make([]int64, 0, 20)
 
+	client.NewListAccountTradeService().Do(context.Background())
+
 	//var wg sync.WaitGroup
 
 	for i := 0; i < 20; i++ {
