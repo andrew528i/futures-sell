@@ -51,7 +51,7 @@ func main() {
 	// print time delta result
 	orderUpdateTime := time.Unix(order.UpdateTime, 0)
 	delta := orderUpdateTime.Sub(now) // targetTime
-	fmt.Println("time difference in ms:", delta.Milliseconds())
+	fmt.Println("time difference in ms:", delta.Milliseconds(), order.UpdateTime, now.Unix())
 
 	err = client.NewCancelAllOpenOrdersService().Symbol(OrderSymbol).Do(context.Background())
 	if err != nil {
