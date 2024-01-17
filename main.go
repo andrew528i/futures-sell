@@ -20,7 +20,7 @@ const (
 
 func main() {
 	//// deal with timestamp and sleep
-	now := time.Now()
+	//now := time.Now()
 	//nowTs := now.UnixMilli()
 
 	defer func() {
