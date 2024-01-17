@@ -44,6 +44,8 @@ func main() {
 		res := sendOrder(client)
 		sum += res
 		results = append(results, res)
+
+		time.Sleep(time.Second)
 		//}()
 	}
 
