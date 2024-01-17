@@ -35,7 +35,7 @@ func main() {
 	// place sell order
 	client := binance.NewFuturesClient(ApiKey, ApiSecret)
 	quantity := fmt.Sprintf("%d", OrderSize)
-	price := fmt.Sprintf("%f", OrderPrice)
+	price := fmt.Sprintf("%d", OrderPrice)
 	order, err := client.NewCreateOrderService().
 		Symbol(OrderSymbol).
 		Side(futures.SideTypeSell).
