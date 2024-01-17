@@ -29,6 +29,8 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
+
+		fmt.Println("all orders cancelled")
 	}()
 
 	//targetTime := time.Unix(TargetTimestamp, 0)
@@ -48,12 +50,16 @@ func main() {
 	//delta := orderUpdateTime.Sub(now) // targetTime
 	//fmt.Println("time difference in ns:", order.UpdateTime-nowTs, order.UpdateTime, nowTs)
 	var sum int64
+	results := make([]int64, 0, 20)
 
 	for i := 0; i < 20; i++ {
-		sum += sendOrder()
+		res := sendOrder()
+		sum += res
+		results = append(results, res)
 	}
 
 	fmt.Printf("average time difference is (ms): %f\n", float64(float64(sum)/20.0))
+	fmt.Println(results)
 }
 
 func sendOrder() int64 {
