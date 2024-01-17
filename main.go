@@ -31,8 +31,6 @@ func main() {
 		fmt.Println("all orders cancelled")
 	}(client)
 
-	client.NewListPricesService().Symbol("TIAUSDT").Do(context.Background())
-
 	var sum int64
 	results := make([]int64, 0, 20)
 
