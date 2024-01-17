@@ -21,7 +21,7 @@ const (
 func main() {
 	//// deal with timestamp and sleep
 	now := time.Now()
-	nowTs := now.UnixNano()
+	nowTs := now.UnixMilli()
 	//targetTime := time.Unix(TargetTimestamp, 0)
 	//
 	//if targetTime.Before(now) {
