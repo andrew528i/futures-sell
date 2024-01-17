@@ -21,6 +21,7 @@ const (
 func main() {
 	//// deal with timestamp and sleep
 	now := time.Now()
+	nowTs := int64(now.Nanosecond())
 	//targetTime := time.Unix(TargetTimestamp, 0)
 	//
 	//if targetTime.Before(now) {
@@ -51,7 +52,7 @@ func main() {
 	// print time delta result
 	orderUpdateTime := time.Unix(order.UpdateTime, 0)
 	delta := orderUpdateTime.Sub(now) // targetTime
-	fmt.Println("time difference in ms:", delta.Milliseconds(), order.UpdateTime, now.Unix())
+	fmt.Println("time difference in ns:", order.UpdateTime-nowTs, order.UpdateTime, nowTs)
 
 	err = client.NewCancelAllOpenOrdersService().Symbol(OrderSymbol).Do(context.Background())
 	if err != nil {
