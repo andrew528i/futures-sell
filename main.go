@@ -46,6 +46,7 @@ func main() {
 		results = append(results, res)
 
 		time.Sleep(time.Second)
+		fmt.Println(res)
 		//}()
 	}
 
@@ -56,18 +57,18 @@ func main() {
 }
 
 func sendOrder(client *futures.Client) int64 {
-	now := time.Now()
-	nowTs := now.UnixMilli()
 	quantity := fmt.Sprintf("%d", OrderSize)
 	price := fmt.Sprintf("%d", OrderPrice)
-	order, err := client.NewCreateOrderService().
+	now := time.Now()
+	nowTs := now.UnixMilli()
+	qb := client.NewCreateOrderService().
 		Symbol(OrderSymbol).
 		Side(futures.SideTypeSell).
 		Type(futures.OrderTypeLimit).
 		TimeInForce(futures.TimeInForceTypeGTC).
 		Quantity(quantity).
-		Price(price).
-		Do(context.Background())
+		Price(price)
+	order, err := qb.Do(context.Background())
 	if err != nil {
 		panic(err)
 	}
