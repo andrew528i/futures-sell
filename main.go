@@ -53,7 +53,7 @@ func main() {
 	delta := orderUpdateTime.Sub(now) // targetTime
 	fmt.Println("time difference in ms:", delta.Milliseconds())
 
-	err := client.NewCancelAllOpenOrdersService().Symbol(OrderSymbol).Do(context.Background())
+	err = client.NewCancelAllOpenOrdersService().Symbol(OrderSymbol).Do(context.Background())
 	if err != nil {
 		panic(err)
 	}
