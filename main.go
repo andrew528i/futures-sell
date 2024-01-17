@@ -14,23 +14,23 @@ const (
 	ApiSecret       = ""
 	TargetTimestamp = int64(1709768000)
 	OrderSymbol     = "TIAUSDT"
-	OrderSize       = 7022
-	OrderPrice      = 2.8
+	OrderSize       = 1
+	OrderPrice      = 22
 )
 
 func main() {
-	// deal with timestamp and sleep
+	//// deal with timestamp and sleep
 	now := time.Now()
-	targetTime := time.Unix(TargetTimestamp, 0)
-
-	if targetTime.Before(now) {
-		fmt.Println("target timestamp has already been passed")
-		return
-	}
-
-	delta := targetTime.Sub(now)
-	fmt.Println("sleeping:", delta)
-	time.Sleep(delta)
+	//targetTime := time.Unix(TargetTimestamp, 0)
+	//
+	//if targetTime.Before(now) {
+	//	fmt.Println("target timestamp has already been passed")
+	//	return
+	//}
+	//
+	//delta := targetTime.Sub(now)
+	//fmt.Println("sleeping:", delta)
+	//time.Sleep(delta)
 
 	// place sell order
 	client := binance.NewFuturesClient(ApiKey, ApiSecret)
@@ -50,6 +50,11 @@ func main() {
 
 	// print time delta result
 	orderUpdateTime := time.Unix(order.UpdateTime, 0)
-	delta = orderUpdateTime.Sub(targetTime)
+	delta := orderUpdateTime.Sub(now) // targetTime
 	fmt.Println("time difference in ms:", delta.Milliseconds())
+
+	err := client.NewCancelAllOpenOrdersService().Symbol(OrderSymbol).Do(context.Background())
+	if err != nil {
+		panic(err)
+	}
 }
