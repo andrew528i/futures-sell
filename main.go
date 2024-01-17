@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"sync"
 	"time"
 
 	"github.com/adshao/go-binance/v2"
@@ -34,21 +33,21 @@ func main() {
 	var sum int64
 	results := make([]int64, 0, 20)
 
-	var wg sync.WaitGroup
+	//var wg sync.WaitGroup
 
 	for i := 0; i < 20; i++ {
-		wg.Add(1)
+		//wg.Add(1)
+		//
+		//go func() {
+		//	defer wg.Done()
 
-		go func() {
-			defer wg.Done()
-
-			res := sendOrder(client)
-			sum += res
-			results = append(results, res)
-		}()
+		res := sendOrder(client)
+		sum += res
+		results = append(results, res)
+		//}()
 	}
 
-	wg.Wait()
+	//wg.Wait()
 
 	fmt.Printf("average time difference is (ms): %f\n", float64(sum)/20.0)
 	fmt.Println(results)
