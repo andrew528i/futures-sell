@@ -21,7 +21,7 @@ const (
 func main() {
 	//// deal with timestamp and sleep
 	now := time.Now()
-	nowTs := now.UnixMilli()
+	//nowTs := now.UnixMilli()
 
 	defer func() {
 		client := binance.NewFuturesClient(ApiKey, ApiSecret)
